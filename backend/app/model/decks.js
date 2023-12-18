@@ -23,26 +23,5 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     }
-  }, {
-    sequelize,
-    tableName: 'decks',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "user_id",
-        using: "BTREE",
-        fields: [
-          { name: "user_id" },
-        ]
-      },
-    ]
   });
 };

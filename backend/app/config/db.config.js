@@ -42,16 +42,5 @@ var db = init_models.initModels(sequelize);
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// фрагмент для проверки корректности работы таблиц (проверяем через report_type)
-db.users.create({
-    username: 'admin',
-    password: 'APD'
-})
-.then(newReport => {
-    console.log('Создана новая запись:', newReport);
-})
-.catch(error => {
-    console.error('Ошибка при создании записи:', error);
-});
 
 module.exports = db;

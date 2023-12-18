@@ -8,10 +8,11 @@ function initModels(sequelize) {
   var decks = _decks(sequelize, DataTypes);
   var users = _users(sequelize, DataTypes);
 
-  cards.belongsTo(decks, { as: "deck", foreignKey: "deck_id"});
-  decks.hasMany(cards, { as: "cards", foreignKey: "deck_id"});
-  decks.belongsTo(users, { as: "user", foreignKey: "user_id"});
-  users.hasMany(decks, { as: "decks", foreignKey: "user_id"});
+  users.hasMany(decks, {foreignKey: "user_id", onDelete:"CASCADE"});
+  decks.hasMany(cards, {foreignKey: "deck_id", onDelete:"CASCADE"});
+  
+  decks.belongsTo(users, {foreignKey: "user_id"});
+  cards.belongsTo(decks, {foreignKey: "deck_id"});
 
   return {
     cards,
