@@ -12,3 +12,9 @@ app.listen(3000);
 
 var user = require('./app/route/user');
 user(app);
+
+var deck = require('./app/route/deck.js');
+deck(app);
+
+var card = require('./app/route/card.js');
+card(app);
