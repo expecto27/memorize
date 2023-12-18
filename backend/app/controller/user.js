@@ -3,7 +3,6 @@ var globalFunctions = require('../config/global.functions.js');
 
 var User = db.users;
 
-// Получение всех пользователей
 exports.findAll = (req, res) => {
     User.findAll()
         .then(objects => {
@@ -36,7 +35,6 @@ exports.findByUsername = (req, res) => {
     })
 };
 
-// Удаление пользователя по id
 exports.delete = (req, res) => {
     User.destroy({
         where: {
@@ -66,7 +64,6 @@ exports.update = (req, res) => {
     })
 };
 
-// Добавление пользователя
 exports.create = (req, res) => {
     User.create({
         username: req.body.username,

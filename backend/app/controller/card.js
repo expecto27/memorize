@@ -13,8 +13,61 @@ exports.findAll = (req, res) => {
     })
 };
 
-exports.findAll = (req, res) =>{
-    Card.byDeck({
+exports.findById = (req, res) => {
+    Card.findByPk(req.params.id)
+        .then(object => {
+            globalFunctions.sendResult(res, object);
+        })
+        .catch(err => {
+            globalFunctions.sendError(res, err);
+        })
+};
+
+exports.delete = (req, res) => {
+    Card.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(() => {
+        globalFunctions.sendResult(res, 'Запись удалена');
+    }).catch(err => {
+        globalFunctions.sendError(res, err);
+    });
+};
+
+exports.update = (req, res) => {
+    Card.update({
+            name: req.body.name,
+            image: req.body.image
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    ).then(object => {
+        globalFunctions.sendResult(res, object);
+    }).catch(err => {
+        globalFunctions.sendError(res, err);
+    })
+};
+
+exports.create = (req, res) => {
+    Card.create({
+        name: req.body.name,
+        translate: req.body.translate,
+        rate: 0,
+        image: req.body.image,
+        user_id: req.params.id
+    }).then(object => {
+        globalFunctions.sendResult(res, object);
+    }).catch(err => {
+        globalFunctions.sendError(res, err);
+    })
+};
+
+exports.findbyDeck = (req, res) =>{
+    Card.findAll({
         where:
         {
             deck_id: req.params.id
