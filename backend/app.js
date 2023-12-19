@@ -10,6 +10,14 @@ db.sequelize.sync({force: false}); // force обозначает автомат�
 
 app.listen(3000);
 
+var cors = require('cors');
+var corsOptions = {
+    origin: 'http://localhost:4200', // указываем, откуда будут приходить запросы
+    credentials: true, // разрешаем обрабатывать запросы
+    optionSuccessStatus: 200 // при успешной обработке запроса будет возвращён статус 200
+};
+app.use(cors(corsOptions));
+
 var user = require('./app/route/user');
 user(app);
 
