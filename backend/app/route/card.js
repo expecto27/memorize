@@ -5,7 +5,7 @@ module.exports = (app) =>{
 
     app.post('/api/addCard/:idUser', card.create);
     app.post('/api/updateCard/:id', card.update);
-    app.post('/api/deleteCard/:id', card.delete);
+    app.post('/api/deleteC/:id', card.delete);
 
     app.get('/api/myCards/:id', card.findbyDeck);
 };

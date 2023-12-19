@@ -56,8 +56,8 @@ exports.update = (req, res) => {
 exports.create = (req, res) => {
     Deck.create({
         name: req.body.name,
-        image: req.body.image,
-        user_id: req.params.id
+        //image: req.body.image,
+        user_id: req.body.id
     }).then(object => {
         globalFunctions.sendResult(res, object);
     }).catch(err => {

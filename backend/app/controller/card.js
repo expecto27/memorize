@@ -38,6 +38,7 @@ exports.delete = (req, res) => {
 exports.update = (req, res) => {
     Card.update({
             name: req.body.name,
+            translate: req.body.translate,
             image: req.body.image
         },
         {
