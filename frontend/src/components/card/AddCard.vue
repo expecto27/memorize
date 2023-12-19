@@ -1,21 +1,25 @@
 <template>
     <div>
-        <h4>Добавление новой карты</h4>
+        <h4>new card</h4>
         <div v-if="!submitted">
             <!--В @submit указывается обработчик, который выполнится после нажатия на кнопку "Добавить"
             Обработчик addDiscipline определён в script-->
-            <form @submit="addCard">
-                <!--v-model - директива для связывания данных с элементами.
-                Связь происходит при помощи переменных, которые определены в data()-->
-                <input type="text" name="name" id="name" placeholder="Введите слово" required v-model="card.name">
-                <input type="text" name="translate" id="translate" placeholder="Введите перевод" required v-model="card.translate">
-                <input type="submit" value="Добавить">
+            <form @submit.prevent="addCard">
+                <div class="mb-3">
+                    <label for="name" class="form-label">word</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="enter word" required v-model="card.name">
+                </div>
+                <div class="mb-3">
+                    <label for="translate" class="form-label">translation</label>
+                    <input type="text" class="form-control" id="translate" name="translate" placeholder="enter translation" required v-model="card.translate">
+                </div>
+                <button type="submit" class="btn btn-primary link">add</button>
             </form>
             <div>
                 <router-link
-            class="item"
+            class="item link"
             :to="{ name: 'deck-detail', params: { userId: $route.params.userId, deckId: $route.params.deckId } }">
-            Вернуться к колоде</router-link>
+            back</router-link>
             </div>
         </div>
         <div v-else>
@@ -77,3 +81,42 @@
         }
     }
 </script>
+<style>
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #1f1f1f;
+}
+
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #1f1f1f;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+</style>

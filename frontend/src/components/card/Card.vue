@@ -1,20 +1,38 @@
 <template>
     <div v-if="this.card">
-        <h4>Карта</h4>
+        <h4>card</h4>
         <div v-if="!submitted">
             <form @submit="updateCard">
-                <input type="text" name="name" id="name" placeholder="Введите слово" required v-model="card.name">
-                <input type="text" name="name" id="name" placeholder="Введите перевод" required v-model="card.translate">
-                <input type="submit" value="Обновить">
+                <div class="mb-3">
+                    <label for="name" class="form-label">word</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="enter word" required v-model="card.name">
+                </div>
+                <div class="mb-3">
+                    <label for="translate" class="form-label">translation</label>
+                    <input type="text" class="form-control" id="translate" name="translate" placeholder="enter translation" required v-model="card.translate">
+                </div>
+                <button type="submit" class="btn btn-primary link">update</button>
             </form>
-            <button v-on:click="deleteCard()">Удалить</button>
+            <div class="links">
+                <router-link
+                    class="item link"
+                    v-on:click="deleteCard()"
+                    :to="{ name: 'deck-detail', params: { userId: $route.params.userId, deckId: $route.params.deckId } }"
+                >delete card</router-link>
+
+                <router-link
+                    class="item link"
+                    :to="{ name: 'deck-detail', params: { userId: $route.params.userId, deckId: $route.params.deckId } }"
+                >back</router-link>
+                
+            </div>
         </div>
         <div v-else>
             <h4>Вы успешно обновили карту</h4>
             <router-link
                 class="item"
                 :to="{ name: 'deck-detail', params: { userId: $route.params.userId, deckId: $route.params.deckId } }"
-            >Вернуться к колоде</router-link>
+            >back</router-link>
         </div>
     </div>
     <div v-else>
@@ -79,3 +97,6 @@
         }
     }
 </script>
+
+<style>
+</style>

@@ -20,6 +20,7 @@
 <style>
   .app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-weight: bold;
     margin-top: 100px;
     font-size: 24px;
     margin-left: 20%; /* Add left margin for better spacing */
