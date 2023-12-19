@@ -63,10 +63,11 @@
                 this.submitted = true;
             },
             deleteCard() {
+                console.log("Deleting card with ID:", this.card.id);
                 http
                     .post("/deleteCard/" + this.card.id)
                     .then(() => {
-                        this.$router.push('/listDisciplines');
+                        this.$router.push('/deck/' + this.userId +"/" + this.deckId);
                     })
                     .catch(e => {
                         console.log(e);
