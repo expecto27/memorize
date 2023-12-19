@@ -1,5 +1,5 @@
 var db = require('../config/db.config.js');
-var User = db.user;
+var User = db.users;
 // регистрация пользователя с предварительной проверкой существования логина
 exports.checkDuplicateUsername = (req, res, next) => {
     User.findOne({

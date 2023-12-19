@@ -6,6 +6,10 @@ import Deck from "./components/deck/Deck";
 
 import Card from "./components/card/Card.vue";
 import AddCard from "./components/card/AddCard.vue";
+
+import Login from "./components/authorization/Login";
+import Profile from "./components/authorization/Profile";
+import Register from "./components/authorization/Register";
 // определяем маршруты
 const routes = [
     {
@@ -15,7 +19,7 @@ const routes = [
         props: true,
         component: myDeck, // компонент, на основании которого будет отрисовываться страница
         meta: {
-            title: "Мои колоды"
+            title: "my decks"
         }
     },
     {
@@ -24,7 +28,7 @@ const routes = [
         props: true,
         component: AddDeck,
         meta: {
-            title: "Добавление колоды"
+            title: "add deck"
         }
     },
     {
@@ -33,7 +37,7 @@ const routes = [
         props: true,
         component: Deck,
         meta: {
-          title: 'Моя колода',
+          title: 'my deck',
         },
     },
     {
@@ -42,7 +46,7 @@ const routes = [
         props: true,
         component: Card,
         meta: {
-          title: 'Изменение карты',
+          title: 'update dard',
         },
     },
     {
@@ -51,22 +55,67 @@ const routes = [
         props: true,
         component: AddCard,
         meta: {
-          title: 'Добавление карты',
+          title: 'add card',
         },
     },
+    {
+        path: "/login",
+        name: "login-user",
+        component: Login,
+        meta: {
+            title: "sign in"
+        }
+    },
+    {
+        path: "/register",
+        name: "register-user",
+        component: Register,
+        meta: {
+            title: "sign up"
+        }
+    },
+    {
+        path: "/profile",
+        name: "profile-user",
+        component: Profile,
+        meta: {
+            title: "Профиль пользователя",
+            // маршрут защищаем (делаем доступным только авторизованным пользователям)
+            requiredAuth: true
+        }
+    }
 ];
 
 const router = createRouter({
     history: createWebHistory(), // указываем, что будет создаваться история посещений веб-страниц
     routes, // подключаем маршрутизацию
 });
-
+import store from "./store/index";
 // указание заголовка компонентам (тега title), заголовки определены в meta
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     // для тех маршрутов, для которых не определены компоненты, подключается только App.vue
     // поэтому устанавливаем заголовком по умолчанию название "Главная страница"
     document.title = to.meta.title || 'Главная страница';
-    next();
+
+    // проверяем наличие токена и срок его действия
+    const auth = await store.getters["auth/isTokenActive"];
+    if (auth) {
+        return next();
+    }
+    // если токена нет или его срок действия истёк, а страница доступна только авторизованному пользователю,
+    // то переходим на страницу входа в систему (ссылка на /login)
+    else if (!auth && to.meta.requiredAuth) {
+        const user = JSON.parse(localStorage.getItem("user"));
+        await store.dispatch("auth/refreshToken", user)
+            .then(() => {
+                return next();
+            })
+            .catch(() => {
+                return next({path: "/login"});
+            });
+        return next({ path: "/login" });
+    }
+    return next();
 });
 
 export default router;

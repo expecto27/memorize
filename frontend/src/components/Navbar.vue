@@ -17,25 +17,50 @@
           <span class="navbar-toggler-icon"></span>
         </button>
   
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link class="link" to="/MyDecks/1">home</router-link>
-            </li>
-            <!-- Add other links if needed -->
-          </ul>
+        <div class="collapse navbar-collapse navbar-nav ml-auto" id="navbarSupportedContent">
+            <div class="nav-item">
+                <router-link class="link" to="/MyDecks/1">home</router-link>
+              </div>
+            
+            <div v-if="currentUser" class="link login">
+                <router-link to="/profile">
+                    {{ currentUser.username }}
+                </router-link>
+                <a href @click.prevent="logOut">
+                    log out
+                </a>
+            </div>
+            <div v-else>
+                <router-link to="/login" class="link login">
+                    sign in
+                </router-link>
+            </div>
+
+            
         </div>
       </nav>
     </div>
   </template>
   
   <script>
-  export default {
+ export default {
     name: "NavBar",
     data() {
-      return {};
+        return {};
+
     },
-  };
+    computed: { // вычисляемые свойства
+        currentUser() {
+            return this.$store.state.auth.user;
+        }
+    },
+    methods: {
+        logOut() {
+            this.$store.dispatch('auth/logout'); // обращаемся к методу logout, который определён в auth.service.js
+            window.location.href = '/login'; // // Используем такую конструкцию, а не this.$router.push, так как требуется перезагрузить страницу для обновления локального хранилища
+        }
+    }
+};
   </script>
   
   <style scoped>
@@ -45,6 +70,7 @@
     top:0px;
     left:0px;
     right:0px;
+    height: 10%;
   }
   
   .icon {
@@ -57,6 +83,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+  }
+  .collapse{
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
   }
   
   /* Remove underlines from links */

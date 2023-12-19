@@ -1,6 +1,6 @@
 var db = require("../config/db.config");
 var config = require("../config/auth.config");
-var User = db.user;
+var User = db.users;
 var globalFunctions = require('../config/global.functions.js');
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
