@@ -26,3 +26,6 @@ deck(app);
 
 var card = require('./app/route/card.js');
 card(app);
+
+var auth = require('./app/route/auth.js');
+auth(app);
