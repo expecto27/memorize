@@ -22,14 +22,16 @@
                 <router-link class="link" to="/MyDecks/1">home</router-link>
               </div>
             
-            <div v-if="currentUser" class="link login">
-                <router-link to="/profile">
+            <div v-if="currentUser" >
+                <router-link to="/profile" class="link login">
                     {{ currentUser.username }}
-                </router-link>
-                <a href @click.prevent="logOut">
+                </router-link></div>
+            <div v-if="currentUser" >
+                <a href @click.prevent="logOut" class="link">
                     log out
                 </a>
             </div>
+            
             <div v-else>
                 <router-link to="/login" class="link login">
                     sign in

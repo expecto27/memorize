@@ -33,6 +33,11 @@
         decks: [],
       };
     },
+    computed: { // вычисляемые свойства
+        currentUser() {
+            return this.$store.state.auth.user;
+        }
+    },
     methods: {
       getDecks() {
         http
