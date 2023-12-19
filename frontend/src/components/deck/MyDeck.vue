@@ -14,10 +14,10 @@
         </router-link>
       </div>
       <router-link
-        class="item"
+        class="item link"
         :to="{ name: 'addDeck', params: { id: $route.params.id } }"
       >
-        <h5 class="link">add new deck</h5>
+        add new deck
       </router-link>
     </div>
   </template>

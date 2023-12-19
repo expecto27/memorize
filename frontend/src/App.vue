@@ -45,4 +45,30 @@
     color: white;
     transition: all 500ms;
   }
+
+  .link::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: white;
+  }
+
+  .link::after {
+    width: 0;
+    transition: 0.3s;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  .link:hover:after {
+    width: 100%;
+  }
+
+  .links{
+    display: flex;
+    justify-content: space-between;
+  }
 </style>
