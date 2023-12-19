@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <navbar/>
     <router-view />
   </div>
@@ -18,8 +18,31 @@
 
 <!--определение стилей-->
 <style>
-  #app {
+  .app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
-    margin-top: 20px;
+    margin-top: 100px;
+    font-size: 24px;
+    margin-left: 20%; /* Add left margin for better spacing */
+    margin-right: 20%; /* Add right margin for better spacing */
+  }
+
+  .center-content{
+    text-align: center;
+  }
+
+  html{
+    background-color:#202528;
+    color: grey; /* Добавьте цвет текста для читаемости */
+    min-height: 100vh; /* Установите высоту равной 100% высоты видимой области (viewport) */
+    padding: 20px; /* Добавьте отступы для контента */
+  }
+  .link{
+    position: relative;
+    color: grey;
+    text-decoration: none
+  }
+  .link:hover{
+    color: white;
+    transition: all 500ms;
   }
 </style>

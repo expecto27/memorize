@@ -7,7 +7,7 @@
             {{card.translate}}<br>
             {{card.rate}}%
             <div>
-                <router-link class="item" :to="{ name: 'update-card', params: { userId: $route.params.userId,
+                <router-link class="item link" :to="{ name: 'update-card', params: { userId: $route.params.userId,
                     deckId:$route.params.deckId,
                      cardId: card.id
                    } }">Изменить</router-link>
@@ -17,7 +17,7 @@
       </ul>
     </div>
     <router-link
-      class="item"
+      class="item link"
       :to="{ name: 'add-card', params: { deckId: $route.params.deckId, userId:$route.params.userId } }"
     >
       Добавить новую карту
