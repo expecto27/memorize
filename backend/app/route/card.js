@@ -3,7 +3,7 @@ module.exports = (app) =>{
     app.get('/api/cards', card.findAll);
     app.get('/api/card/:id', card.findById)
 
-    app.post('/api/addCard/:idUser', card.create);
+    app.post('/api/addCard', card.create);
     app.post('/api/updateCard/:id', card.update);
     app.post('/api/deleteCard/:id', card.delete);
 

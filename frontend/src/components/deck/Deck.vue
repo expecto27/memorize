@@ -18,7 +18,7 @@
     </div>
     <router-link
       class="item"
-      :to="{ name: 'addDeck', params: { id: $route.params.deckId } }"
+      :to="{ name: 'add-card', params: { deckId: $route.params.deckId, userId:$route.params.userId } }"
     >
       Добавить новую карту
     </router-link>

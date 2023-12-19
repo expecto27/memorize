@@ -58,8 +58,7 @@ exports.create = (req, res) => {
         name: req.body.name,
         translate: req.body.translate,
         rate: 0,
-        image: req.body.image,
-        user_id: req.params.id
+        deck_id: req.body.deck_id
     }).then(object => {
         globalFunctions.sendResult(res, object);
     }).catch(err => {

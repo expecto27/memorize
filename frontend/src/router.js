@@ -5,6 +5,7 @@ import AddDeck from "./components/deck/AddDeck";
 import Deck from "./components/deck/Deck";
 
 import Card from "./components/card/Card.vue";
+import AddCard from "./components/card/AddCard.vue";
 // определяем маршруты
 const routes = [
     {
@@ -41,7 +42,16 @@ const routes = [
         props: true,
         component: Card,
         meta: {
-          title: 'Моя колода',
+          title: 'Изменение карты',
+        },
+    },
+    {
+        path: '/newCard/:userId/:deckId',
+        name: 'add-card',
+        props: true,
+        component: AddCard,
+        meta: {
+          title: 'Добавление карты',
         },
     },
 ];
