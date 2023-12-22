@@ -6,10 +6,12 @@ import Deck from "./components/deck/Deck";
 
 import Card from "./components/card/Card.vue";
 import AddCard from "./components/card/AddCard.vue";
+import Training from './components/card/Training';
 
 import Login from "./components/authorization/Login";
 import Profile from "./components/authorization/Profile";
 import Register from "./components/authorization/Register";
+
 // определяем маршруты
 const routes = [
     {
@@ -80,8 +82,16 @@ const routes = [
         component: Profile,
         meta: {
             title: "Профиль пользователя",
-            // маршрут защищаем (делаем доступным только авторизованным пользователям)
             requiredAuth: true
+        }
+    },
+    {
+        path: "/training/:userId/:deckId",
+        name: "training-deck",
+        props: true,
+        component: Training,
+        meta: {
+            title: "Training"
         }
     }
 ];

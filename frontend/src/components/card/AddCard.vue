@@ -15,11 +15,11 @@
                 </div>
                 <button type="submit" class="btn btn-primary link">add</button>
             </form>
-            <div>
+            <div class="link">
                 <router-link
-            class="item link"
-            :to="{ name: 'deck-detail', params: { userId: $route.params.userId, deckId: $route.params.deckId } }">
-            back</router-link>
+                 class="item link"
+                :to="{ name: 'deck-detail', params: { userId: $route.params.userId, deckId: $route.params.deckId } }">
+                back</router-link>
             </div>
         </div>
         <div v-else>
