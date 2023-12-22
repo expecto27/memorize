@@ -1,8 +1,8 @@
 <template>
-    <div v-if="this.deck" class="app">
+    <div v-if="this.deck && currentUser == $route.params.userId" class="app">
       <div class="links title">
-        <div >my deck</div>
-        <router-link class="link" :to="{ name: 'myDecks', params: { id: $route.params.userId } }">back</router-link>
+        <div>my deck ({{ calculateAverage(cards)  }}%performance)</div>
+        <div> <router-link class="link" :to="{ name: 'myDecks', params: { id: $route.params.userId } }">back</router-link></div>
       </div>
       
       <form @submit="updateDeck">
@@ -40,9 +40,7 @@
         <router-link
           class="item link"
           :to="{ name: 'add-card', params: { deckId: $route.params.deckId, userId:$route.params.userId } }"
-        >
-          add new card
-        </router-link>
+        >add new card</router-link>
   
         <router-link class="link" :to="{ name: 'myDecks', params: { id: $route.params.userId } }">back</router-link>
       </div>
@@ -61,7 +59,23 @@
         deck: null
       };
     },
+    computed: { // вычисляемые свойства
+        currentUser() {
+            return this.$store.state.auth.user.id;
+        }
+    },
     methods: {
+      calculateAverage(array) {
+        if (!Array.isArray(array) || array.length === 0) {
+          return 0;
+        }
+        const sum = array.reduce((accumulator, currentValue) => accumulator + currentValue.rate, 0);
+        const average = sum / array.length;
+
+        return average;
+      },
+
+
       getCardCount(){
         return this.cards.length;
       },
@@ -162,6 +176,11 @@
   }
   .title{
     margin-bottom: 20px;
+  }
+
+  .links{
+    display: flex;
+    justify-content: space-between;
   }
   </style>
   

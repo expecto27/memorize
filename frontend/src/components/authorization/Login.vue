@@ -39,13 +39,16 @@
         computed: { // вычисляемые свойства
             loggedIn() {
                 return this.$store.state.auth.status.loggedIn; // $store - локальное хранилище
+            },
+            currentUser() {
+                return this.$store.state.auth.user;
             }
         },
         created() {
             if (this.loggedIn) {
                 // Авторизация прошла успешно, переходим к главной странице.
                 // Используем такую конструкцию, а не this.$router.push, так как требуется перезагрузить страницу для обновления локального хранилища
-                window.location.href = '/';
+                window.location.href = '/MyDecks/' + this.currentUser.id;
             }
         },
         methods: {
@@ -54,7 +57,7 @@
                 this.loading = true;
                 this.$store.dispatch("auth/login", this.user) // обращаемся к методу login, который определён в auth.service.js
                     .then(() => {
-                        window.location.href = '/'; // авторизация прошла успешно, переходим к главной странице. Используем такую конструкцию, а не this.$router.push, так как требуется перезагрузить страницу для обновления локального хранилища
+                        window.location.href = '/MyDecks/' + this.currentUser.id; // авторизация прошла успешно, переходим к главной странице. Используем такую конструкцию, а не this.$router.push, так как требуется перезагрузить страницу для обновления локального хранилища
                     })
                     .catch(e => {
                             this.loading = false;

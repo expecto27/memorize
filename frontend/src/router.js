@@ -21,7 +21,8 @@ const routes = [
         props: true,
         component: myDeck, // компонент, на основании которого будет отрисовываться страница
         meta: {
-            title: "my decks"
+            title: "my decks",
+            requiredAuth: true
         }
     },
     {
@@ -30,7 +31,8 @@ const routes = [
         props: true,
         component: AddDeck,
         meta: {
-            title: "add deck"
+            title: "add deck",
+            requiredAuth: true
         }
     },
     {
@@ -40,6 +42,7 @@ const routes = [
         component: Deck,
         meta: {
           title: 'my deck',
+          requiredAuth: true
         },
     },
     {
@@ -49,6 +52,7 @@ const routes = [
         component: Card,
         meta: {
           title: 'update dard',
+          requiredAuth: true
         },
     },
     {
@@ -58,6 +62,7 @@ const routes = [
         component: AddCard,
         meta: {
           title: 'add card',
+          requiredAuth: true
         },
     },
     {
@@ -73,7 +78,7 @@ const routes = [
         name: "register-user",
         component: Register,
         meta: {
-            title: "sign up"
+            title: "sign up",
         }
     },
     {
@@ -81,7 +86,7 @@ const routes = [
         name: "profile-user",
         component: Profile,
         meta: {
-            title: "Профиль пользователя",
+            title: "profile",
             requiredAuth: true
         }
     },
@@ -91,7 +96,8 @@ const routes = [
         props: true,
         component: Training,
         meta: {
-            title: "Training"
+            title: "Training",
+            requiredAuth: true
         }
     }
 ];

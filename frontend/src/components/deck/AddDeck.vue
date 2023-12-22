@@ -1,28 +1,17 @@
 <template>
-    <div>
-        <h4>Добавление новой колоды</h4>
+    <div v-if="currentUser == $route.params.id">
+        <h4>addition new deck</h4>
         <div v-if="!submitted">
             <!--В @submit указывается обработчик, который выполнится после нажатия на кнопку "Добавить"
             Обработчик addDiscipline определён в script-->
             <form @submit="addDeck">
                 <!--v-model - директива для связывания данных с элементами.
                 Связь происходит при помощи переменных, которые определены в data()-->
-                <input type="text" name="name" id="name" placeholder="Название колоды" required v-model="deck.name">
-                <input type="submit" value="Добавить">
+                <input class="form-control" type="text" name="name" id="name" placeholder="name" required v-model="deck.name">
+                <button type="submit" class="btn btn-primary link">add</button>
             </form>
             <div>
-                <router-link :to="{ name: 'myDecks', params: { id: $route.params.id } }">Вернуться к моим колодам</router-link>
-            </div>
-        </div>
-        <div v-else>
-            <h4>Вы успешно добавили колоду</h4>
-            <div>
-                <!--В v-on:click указывается обработчик, который выполниться после нажатия на кнопку "Добавить новую учебную дисциплину"
-                Обработчик newDiscipline определён в script-->
-                <button v-on:click="newDeck">Добавить еще одну колоду</button>
-            </div>
-            <div>
-                <router-link :to="{ name: 'myDecks', params: { id: $route.params.id } }">Вернуться к моим колодам</router-link>
+                <router-link class="link" :to="{ name: 'myDecks', params: { id: $route.params.id } }">back</router-link>
             </div>
         </div>
     </div>
@@ -41,6 +30,11 @@
                 },
                 submitted: false
             };
+        },
+        computed: { // вычисляемые свойства
+            currentUser() {
+                return this.$store.state.auth.user.id;
+            }
         },
         methods: {
             addDeck(e) {
@@ -70,3 +64,6 @@
         }
     }
 </script>
+
+<style>
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="currentUser == $route.params.userId">
         <h4>new card</h4>
         <div v-if="!submitted">
             <!--В @submit указывается обработчик, который выполнится после нажатия на кнопку "Добавить"
@@ -22,15 +22,6 @@
                 back</router-link>
             </div>
         </div>
-        <div v-else>
-            <h4>Вы успешно добавили карту</h4>
-            <div>
-                <!--В v-on:click указывается обработчик, который выполниться после нажатия на кнопку "Добавить новую учебную дисциплину"
-                Обработчик newDiscipline определён в script-->
-                <button v-on:click="newCard">Добавить еще одну карту</button>
-            </div>
-            
-        </div>
     </div>
 </template>
 
@@ -50,6 +41,11 @@
                 submitted: false
             };
         },
+        computed: { // вычисляемые свойства
+             currentUser() {
+                return this.$store.state.auth.user.id;
+            }
+        },
         methods: {
             addCard(e) {
                 e.preventDefault(); // запрет отправки формы, так как обрабатывать будем с помощью методов axios
@@ -68,6 +64,7 @@
                         console.log(e);
                     });
                 this.submitted = true;
+                window.location.href = '/deck/' + this.userId + "/" + this.deckId;
             },
             newCard() {
                 this.submitted = false;
@@ -81,6 +78,7 @@
         }
     }
 </script>
+
 <style>
 form {
     max-width: 400px;

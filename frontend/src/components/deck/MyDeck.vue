@@ -1,5 +1,5 @@
 <template>
-    <div class="center-content app">
+    <div v-if="currentUser == $route.params.id" class="center-content app" >
       <h4>my decks</h4>
       <div class="card-deck">
         <router-link
@@ -16,9 +16,7 @@
       <router-link
         class="item link"
         :to="{ name: 'addDeck', params: { id: $route.params.id } }"
-      >
-        add new deck
-      </router-link>
+      >add new deck</router-link>
     </div>
   </template>
   
@@ -35,7 +33,7 @@
     },
     computed: { // вычисляемые свойства
         currentUser() {
-            return this.$store.state.auth.user;
+            return this.$store.state.auth.user.id;
         }
     },
     methods: {

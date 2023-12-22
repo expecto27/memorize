@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.card">
+    <div v-if="this.card && currentUser == $route.params.userId" >
         <h4>card</h4>
         <div v-if="!submitted">
             <form @submit="updateCard">
@@ -51,6 +51,11 @@
                 card: null,
                 submitted: false
             };
+        },
+        computed: { // вычисляемые свойства
+            currentUser() {
+                return this.$store.state.auth.user.id;
+            }
         },
         methods: {
             getCard() {

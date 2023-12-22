@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <router-link class="navbar-brand link" to="/MyDecks/1">
+      <router-link v-if="currentUser" class="navbar-brand link" :to="{ name: 'myDecks', params: { id:  currentUser.id } }">
         <img src="@/assets/logo.png" alt="memorize" class="icon" />memorize
       </router-link>
 
@@ -19,7 +19,7 @@
 
       <div class="collapse navbar-collapse navbar-nav ml-auto" id="navbarSupportedContent">
           <div class="nav-item">
-              <router-link class="link" to="/MyDecks/1">home</router-link>
+            <router-link v-if="currentUser" class="navbar-brand link" :to="{ name: 'myDecks', params: { id:  currentUser.id } }">home</router-link>
             </div>
           
           <div v-if="currentUser" >
