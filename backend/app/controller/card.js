@@ -39,7 +39,8 @@ exports.update = (req, res) => {
     Card.update({
             name: req.body.name,
             translate: req.body.translate,
-            image: req.body.image
+            image: req.body.image,
+            rate: req.body.rate
         },
         {
             where: {
