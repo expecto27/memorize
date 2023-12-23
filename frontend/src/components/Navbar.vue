@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <router-link v-if="currentUser" class="navbar-brand link" :to="{ name: 'myDecks', params: { id:  currentUser.id } }">
-        <img src="@/assets/logo.png" alt="memorize" class="icon" />memorize
+        <img src="@/assets/logo.png" alt="memorize" class="icon" />memo
       </router-link>
 
       <button
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
       logOut() {
-          this.$store.dispatch('auth/logout'); // обращаемся к методу logout, который определён в auth.service.js
+          this.$store.dispatch('auth/logout');
           window.location.href = '/login'; // // Используем такую конструкцию, а не this.$router.push, так как требуется перезагрузить страницу для обновления локального хранилища
       }
   }

@@ -56,7 +56,7 @@
   
   <style scoped>
   .card {
-    width: 25%; /* Set the desired width */
+    width: 20%; /* Set the desired width */
     height: 25%; /* Set the desired height */
     margin-right: 10px;
     margin-bottom: 10px;
@@ -79,7 +79,7 @@
   
   .card-deck {
     display: flex;
-    flex-wrap: space-around; /* Обертывание на новую строку при достижении конца контейнера */
+    flex-wrap: wrap; /* Обертывание на новую строку при достижении конца контейнера */
     gap: 5px; /* Расстояние между карточками в ряду */
   }
 
